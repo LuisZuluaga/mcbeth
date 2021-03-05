@@ -11,16 +11,17 @@ class PlaysList
     @url
   end
 
-  def get(html)
-    @html = html
+  def get
+    @html = Nokogiri::HTML(open(@url))
+    self
   end
 
   def list
     extract_names_and_urls = lambda do |doc|
-      [extact_url(@url, document), extract_titles(document)]
+      [extact_url(@url, doc), extract_titles(doc)]
     end
     
-    html.css('a').map(&extract_names_and_urls)
+    @html.css('a').map(&extract_names_and_urls)
   end
 
   def html
@@ -29,9 +30,11 @@ class PlaysList
   end
 
   def extact_url(url, document)
+    url + document['href']
   end
 
   def extract_titles(document)
+    document.text
   end
 
 end

@@ -3,4 +3,4 @@ source "https://rubygems.org"
 gem "rspec"
 gem 'guard-rspec'
 gem 'nokogiri'
-gem 'webmock'
+gem 'webmock', '~> 3.12'

@@ -5,6 +5,13 @@ class PlayAnalyzer
     @source      = source_type.source
   end
 
+  def source_type
+    @source_type
+  end 
+
+  def source
+    @source
+  end
   def words_by_characters name
   end
 

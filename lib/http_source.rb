@@ -9,7 +9,11 @@ class HttpSource
 
   def source
     response = open(@url)
-    @xml     = Nokogiri::XML(response.read)
+    @xml     = Nokogiri::XML(response.read, nil, "UTF-8")
+  end
+
+  def subject
+    @xml
   end
 
 end
