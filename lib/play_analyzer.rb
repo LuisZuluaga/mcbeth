@@ -19,7 +19,7 @@ class PlayAnalyzer
   
   def words_by_characters name
     all_speeches = @source.xpath("//SPEECH").to_a
-    speeches_by_name = all_speeches.select{|s| s.css("SPEAKER/text()").to_s == name }.map{ |s| [s.css("LINE").text.downcase.gsub(/[^a-z0-9\s]/i, '').strip.split(" ")] }
+    speeches_by_name = all_speeches.select{|s| s.css("SPEAKER/text()").to_s == name }.map{ |s| [s.css("LINE").text.downcase.gsub(/[^0-9a-z ]/i, '').strip.split(" ")] }
 
     speeche_by_words = []
     
@@ -27,23 +27,24 @@ class PlayAnalyzer
     
     speakers_words = Hash.new(0)
     speeche_by_words.map {|speaker| speakers_words[speaker] += 1}
-    speakers_words.each{ |x| puts x }
-
+    speakers_words.each{ |key, value| [ key, value ] }
+    
   end
 
   def characters
- 
+    all_speeches = @source.xpath("//SPEECH").to_a
+    characters = all_speeches.map{ |s|  [s.css("SPEAKER/text()").to_s][0] }.uniq
   end
 
   def characters_spoken_lines
 
     all_speeches = @source.xpath("//SPEECH").to_a
     a = all_speeches.map{ |s|  [s.css("SPEAKER/text()").to_s, s.css("LINE").count] }
-    # a.each{ |x| print x }
+
     speakers_hash = Hash.new(0)
     a.map {|speaker| speakers_hash[speaker[0]] += speaker[1]}
-    return speakers_hash.each{ |x| print x }
-
+    speakers_hash.each{ |key, value| [ key, value ] }
+    
   end
 
 end

@@ -24,6 +24,10 @@ class PlaysList
     @html.css('a').map(&extract_names_and_urls)
   end
 
+  def number_of_lists
+    @html.css('a').length
+  end
+
   def html
     # @html it is set on get method
     @html

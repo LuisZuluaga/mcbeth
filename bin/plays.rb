@@ -7,6 +7,8 @@ require_relative '../lib/xml_source.rb'
 command = ""
 while(command != -1) do
   plays = PlaysList.new.get.list
+  puts 'Number of plays'
+  puts PlaysList.new.get.number_of_lists
   plays.each_with_index do | pair, index |
     print "#{index} \- #{pair.last}\n"
   end
@@ -30,20 +32,18 @@ while(command != -1) do
     
     puts play_pair.first
 
-    puts pa.characters_spoken_lines
-    puts pa.words_by_characters('ADAM')
-    # characters = pa.characters_spoken_lines.map{|c| c.first}
-    # pa.characters_spoken_lines.each_with_index do |(k, v), index|
-    # puts "#{index} - #{k} spoke #{v} words."
-    # end
+    characters = pa.characters_spoken_lines.map{|c| c.first}
+    pa.characters_spoken_lines.each_with_index do |(k, v), index|
+    puts "#{index} - #{k} spoke #{v} words."
+    end
 
-    # puts "\n\nTo character words please enter character number"\
-    #   "\nto Exit to play list press enter\n"
-    # command = gets.chomp.to_i
-    # words = pa.words_by_characters characters[command] rescue ["no words"]
-    # words.each{|w| print "(" + w.first + ": " + w.last.to_s + "),  " }
-    # puts "Press enter to continue!"
-    # command = gets.chomp
+    puts "\n\nTo character words please enter character number"\
+      "\nto Exit to play list press enter\n"
+    command = gets.chomp.to_i
+    words = pa.words_by_characters characters[command] rescue ["no words"]
+    words.each{|w| print "(" + w.first + ": " + w.last.to_s + "),  " }
+    puts "Press enter to continue!"
+    command = gets.chomp
   else
   end
 
