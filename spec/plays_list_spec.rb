@@ -24,4 +24,16 @@ describe PlaysList do
     end
   end
 
+  describe '#list at least one' do
+    it 'at least one list' do
+      expect(subject.list.count).to be > 0
+    end
+  end
+
+  describe '#list in total' do
+    it 'returns the number of all of the lists' do
+      expect(subject.list.count).to eq(39)
+    end
+  end
+
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'webmock/rspec'
 require 'nokogiri'
-WebMock.disable_net_connect!(allow_localhost: true)
+
 
 describe HttpSource do
   before do
