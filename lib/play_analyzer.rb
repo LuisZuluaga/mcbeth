@@ -16,10 +16,14 @@ class PlayAnalyzer
   def source
     @source
   end
+
+  def word_by_character (name, word)
+    words_by_characters(name)[word]
+  end
   
   def words_by_characters name
     all_speeches = @source.xpath("//SPEECH").to_a
-    speeches_by_name = all_speeches.select{|s| s.css("SPEAKER/text()").to_s == name }.map{ |s| [s.css("LINE").text.downcase.gsub(/[^0-9a-z ]/i, '').strip.split(" ")] }
+    speeches_by_name = all_speeches.select{|s| s.css("SPEAKER/text()").to_s == name }.map{ |s| [s.css("LINE").text.downcase.gsub(".", "").strip.split(" ")] }
 
     speeche_by_words = []
     
