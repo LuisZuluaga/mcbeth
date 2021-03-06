@@ -12,7 +12,7 @@ class PlaysList
   end
 
   def get
-    @html = Nokogiri::HTML(open(@url))
+    @html = Nokogiri::HTML(URI.open(@url))
     self
   end
 

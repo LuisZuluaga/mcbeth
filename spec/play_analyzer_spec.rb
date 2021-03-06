@@ -3,7 +3,7 @@ require 'nokogiri'
 
 describe PlayAnalyzer do
   # define what should be source_type with let(:source_type) { ... }
-  let(:source_type) { PlayAnalyzer.new({source:''}) }
+  let(:source_type) { PlayAnalyzer.new(HttpSource(['', ''])) }
   subject { PlayAnalyzer.new(source_type) }
 
   describe '#characters' do
